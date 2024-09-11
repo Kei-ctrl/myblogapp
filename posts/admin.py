@@ -4,4 +4,3 @@ from django.contrib import admin # type: ignore
 from . models import Post
 
 
-admin.site.register(Post)#adminライブラリのsiteモジュールをつかって管理サイトにするの#.registerメソッド使用。Post機能

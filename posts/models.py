@@ -23,7 +23,3 @@ class Post(models.Model):
     def summary(self):
     #    先頭から100文字。
         return self.body[:30]
-    
-
-
-

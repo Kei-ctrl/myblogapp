@@ -29,4 +29,3 @@ def post_detail(request, post_id):
 
 def about(request):
     return render(request, 'posts/about.html')
-
