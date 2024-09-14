@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tinder Cards</title>
+
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script src="/static/js/index.80f6b0e6.js" defer></script>
+        <script src="/static/js/chunk-vendors.594bf258.js" defer></script>
+    </head>
+<body>
+    <div class="card-container">
+        {% for attraction in attractions %}
+        <div class="card">
+            <img src="" alt="">
+            <h2>{{ attraction.title }}</h2>
+            <h2>ハロー</h2>
+            <p></p>
+        </div>
+        {% endfor %}
+    </div>
+</body>

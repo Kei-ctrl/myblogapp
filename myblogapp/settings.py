@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
 import os
 from pathlib import Path
 
@@ -26,8 +25,19 @@ SECRET_KEY = "django-insecure-olw1)t++h2q5mpx$^_c38afza$2j89q4e89mubz40it&#&-y&8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["13.239.97.179"]
+ALLOWED_HOSTS = [
+    "13.239.97.179",
+    '127.0.0.1',
+    'localhost'
+    ]
 
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Configure CORS
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+]
 
 # Application definition
 
@@ -39,6 +49,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'posts.apps.PostsConfig',
+    'corsheaders',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +61,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = "myblogapp.urls"
@@ -56,7 +69,7 @@ ROOT_URLCONF = "myblogapp.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'posts', 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -68,6 +81,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = "myblogapp.wsgi.application"
 
@@ -125,11 +139,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# 静的ファイルのURL設定
 STATIC_URL = "/static/"
 
-MEDIA_URL = "/pics/"
-MEDIA_ROOT = BASE_DIR
+# 静的ファイルのディレクトリ設定
+STATICFILES_DIRS = [BASE_DIR / "posts" / "static"]
+# 静的ファイルを収集する場所（本番環境用）
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# メディアファイルのURL設定
+MEDIA_URL = "/media/"
+
+# メディアファイルのディレクトリ設定
+MEDIA_ROOT = BASE_DIR / "media"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+
+
+
+

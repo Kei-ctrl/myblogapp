@@ -1,7 +1,21 @@
+
 import requests
-from django.shortcuts import render, get_object_or_404 # type: ignore
+from .models import Post 
 from django.http import HttpResponse # type: ignore
-from .models import Post  # モデルをインポート
+from django.shortcuts import render, get_object_or_404 # type: ignore
+from .models import Post, Attraction  # モデルをインポート
+from rest_framework import viewsets # type: ignore
+from .serializers import AttractionSerializer
+
+
+
+
+
+
+
+class AttractionViewSet(viewsets.ModelViewSet):
+    queryset = Attraction.objects.all()
+    serializer_class = AttractionSerializer
 
 def index(request):
     # return HttpResponse("Hello World!")
@@ -10,7 +24,7 @@ def index(request):
 #    oder_by()メソッドで-published公開日の降順でソートする持たせる
 #    ソート: 並び替えること
 
-    return render(request, 'posts/index.html/',  {'posts': posts})#直接returnするのではなくて外部のhtmlのほうを読みこんでブラウザにもどしてあげる。
+    return render(request, 'posts/index.html',  {'posts': posts})#直接returnするのではなくて外部のhtmlのほうを読みこんでブラウザにもどしてあげる。
 # Create your views here.
 #indexと呼ばれたページの内容をレンダリングしているこれを
 # レンダリングする前にPostから取り出した値をテンプレートに添えて転送
@@ -27,5 +41,10 @@ def post_detail(request, post_id):
 # 'post_id':post_idに渡すという操作がわからない
 #Postクラスのインスタンにデータを渡す。辞書のキーにつかう。データを転送
 
-def about(request):
-    return render(request, 'posts/about.html')
+#def about(request):
+#    return render(request, 'posts/about.html')
+
+
+def tinder_cards(request):
+    attractions = Attraction.objects.all()  # Attraction モデルからデータを取得
+    return render(request, 'posts/tinder_cards.html', {'attractions': attractions})

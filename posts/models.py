@@ -1,5 +1,6 @@
 from django.db import models  # type: ignore
 
+
 # Create your models here.
 #モデルライブりのモデルモジュールをつかう
 class Post(models.Model):
@@ -23,3 +24,13 @@ class Post(models.Model):
     def summary(self):
     #    先頭から100文字。
         return self.body[:30]
+    
+
+class Attraction(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+
+    def __str__(self):
+        return self.name
