@@ -4,7 +4,7 @@ from django.db import models  # type: ignore
 # Create your models here.
 #モデルライブりのモデルモジュールをつかう
 class Post(models.Model):
-# 詳細な属性を定義していく
+# 詳細な属性を定義する
     # 文字列が入ったCahrFieldというメソッドを使う#オプションは100文字まで。
     title = models.CharField(max_length=100)#modelsライブラリの様々な
 # published掲載日に時間の機能を渡す
