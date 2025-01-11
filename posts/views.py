@@ -4,7 +4,7 @@ from .models import Post
 from django.http import HttpResponse # type: ignore
 from django.shortcuts import render, get_object_or_404 # type: ignore
 from .models import Post, Attraction  # モデルをインポート
-from rest_framework import viewsets # type: ignore
+from rest_framework import viewsets # type: .ignore
 from .serializers import AttractionSerializer
 
 
