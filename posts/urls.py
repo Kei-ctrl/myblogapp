@@ -18,7 +18,7 @@ router.register(r"attractions", AttractionViewSet, basename="attractions")
 #r:正規表現
 urlpatterns = [
     path("", views.index, name="index"), # type: ignore
-#    path("about/", views.about, name="about"), # type: ignore
+#    path("about/", views.about, name="about"), # type: .ignore
     path("api/", include(router.urls)), 
     path("posts/<int:post_id>", views.post_detail, name="post_detail"),#関数post_id # type: ignore
     path("tinder_cards/", views.tinder_cards, name="tinder_cards"),
